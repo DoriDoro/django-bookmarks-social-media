@@ -10,12 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
-import os
-
 from decouple import config
 from pathlib import Path
 
-from django.conf.global_settings import LOGIN_REDIRECT_URL
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -122,11 +119,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, "core/staticfiles")
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [
-    BASE_DIR / "core/static",
-]
+STATIC_URL = "static/"
 
 
 # set the User
@@ -139,6 +132,19 @@ AUTH_USER_MODEL = "account.User"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
+# Authentication configuration
 LOGIN_REDIRECT_URL = "account:dashboard"
-LOGIN_URL = "account:login"
-LOGOUT_URL = "account:logout"
+LOGIN_URL = "login"
+LOGOUT_URL = "logout"
+
+
+# for development only:
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# Email server configuration
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
