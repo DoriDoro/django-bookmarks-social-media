@@ -64,6 +64,8 @@ class UserProfileEditView(LoginRequiredMixin, View):
             profile_form.save()
             messages.success(request, "Your profile has been updated successfully!")
             return redirect("account:dashboard")
+        else:
+            messages.error(request, "Error updating your profile!")
 
         return render(
             request,
