@@ -24,3 +24,7 @@ todo.txt
 # System-specific files
 .DS_Store
 Thumbs.db
+
+# social authentication
+cert.crt
+cert.key
