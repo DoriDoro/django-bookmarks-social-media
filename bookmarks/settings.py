@@ -29,15 +29,19 @@ DEBUG = config("DEBUG", True)
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="*").split(",")
 
 # Application definition
-
 INSTALLED_APPS = [
+    # custom application
     "account",
+    # built-in
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # third-party applications
+    "social_django",
+    "django_extensions",
 ]
 
 MIDDLEWARE = [
@@ -149,4 +153,10 @@ DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "account.authentication.EmailAuthBackend",
+    "social_core.backends.google.GoogleOAuth2",
 ]
+
+
+# Social Media login configuration
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config("GOOGLE_OAUTH2_KEY")
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config("GOOGLE_OAUTH2_SECRET")

@@ -14,3 +14,6 @@ create_db:
 
 server:
 	python manage.py runserver
+
+https:
+	python manage.py runserver_plus --cert-file cert.crt
