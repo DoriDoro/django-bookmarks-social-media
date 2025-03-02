@@ -184,3 +184,18 @@ If these (SECURE_SSL_REDIRECT, CSRF_COOKIE_SECURE and SESSION_COOKIE_SECURE) are
 your app could send sensitive authentication or CSRF cookies over an 
 unsecured HTTP connection, which could be intercepted.
 """
+
+
+# Python Social Auth pipelines - authentication flow
+SOCIAL_AUTH_PIPELINE = [
+    "social_core.pipeline.social_auth.social_details",
+    "social_core.pipeline.social_auth.social_uid",
+    "social_core.pipeline.social_auth.auth_allowed",
+    "social_core.pipeline.social_auth.social_user",
+    "social_core.pipeline.user.get_username",
+    "social_core.pipeline.user.create_user",
+    "account.authentication.create_profile",
+    "social_core.pipeline.social_auth.associate_user",
+    "social_core.pipeline.social_auth.load_extra_data",
+    "social_core.pipeline.user.user_details",
+]
