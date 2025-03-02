@@ -160,3 +160,27 @@ AUTHENTICATION_BACKENDS = [
 # Social Media login configuration
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config("GOOGLE_OAUTH2_KEY")
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config("GOOGLE_OAUTH2_SECRET")
+
+# only set to True when a https certificate is available
+"""
+automatically redirect all HTTP requests to HTTPS
+When SECURE_SSL_REDIRECT = True, 
+  if a request comes in using http://, Django will respond with a 301 redirect to https://
+"""
+SECURE_SSL_REDIRECT = True
+"""
+Ensures that Django’s CSRF (Cross-Site Request Forgery) protection cookie is only sent over HTTPS.
+If a request is made over http://, the CSRF cookie won’t be sent.
+Helps prevent man-in-the-middle (MITM) attacks on CSRF tokens.
+"""
+CSRF_COOKIE_SECURE = True
+"""
+Ensures that session cookies (used for authentication) are only sent over HTTPS.
+Prevents session hijacking if an attacker intercepts network traffic.
+"""
+SESSION_COOKIE_SECURE = True
+"""
+If these (SECURE_SSL_REDIRECT, CSRF_COOKIE_SECURE and SESSION_COOKIE_SECURE) are set to False, 
+your app could send sensitive authentication or CSRF cookies over an 
+unsecured HTTP connection, which could be intercepted.
+"""
