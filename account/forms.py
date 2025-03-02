@@ -7,11 +7,6 @@ from account.models import Profile
 UserModel = get_user_model()
 
 
-class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
-
-
 class UserRegistrationForm(UserCreationForm):
     """Register form for new User instances"""
 
@@ -30,6 +25,11 @@ class UserRegistrationForm(UserCreationForm):
                 "Email already exists. Please use a different one."
             )
         return data
+
+
+class LoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)
 
 
 class UserEditForm(forms.ModelForm):

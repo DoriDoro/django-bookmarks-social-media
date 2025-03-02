@@ -8,7 +8,8 @@ UserModel = get_user_model()
 
 admin.site.register(UserModel, UserAdmin)
 
+
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'date_of_birth', 'photo']
-    raw_id_fields = ['user']
+    list_display = ["user", "date_of_birth", "photo"]
+    raw_id_fields = ["user"]

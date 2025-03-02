@@ -13,16 +13,6 @@ from account.models import Profile
 UserModel = get_user_model()
 
 
-class DashboardView(LoginRequiredMixin, SuccessMessageMixin, TemplateView):
-    template_name = "account/dashboard.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["section"] = "dashboard"
-
-        return context
-
-
 class UserRegisterView(SuccessMessageMixin, CreateView):
     model = UserModel
     form_class = UserRegistrationForm
@@ -36,6 +26,16 @@ class UserRegisterView(SuccessMessageMixin, CreateView):
         Profile.objects.create(user=self.object)
 
         return response
+
+
+class DashboardView(LoginRequiredMixin, SuccessMessageMixin, TemplateView):
+    template_name = "account/dashboard.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["section"] = "dashboard"
+
+        return context
 
 
 class UserProfileEditView(LoginRequiredMixin, View):
